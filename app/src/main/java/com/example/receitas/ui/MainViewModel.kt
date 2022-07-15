@@ -10,24 +10,24 @@ import com.example.receitas.repository.RepositoryImpl
 import com.example.receitas.repository.RepositoryStatus
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repository: Repository = RepositoryImpl()): ViewModel() {
+class MainViewModel(private val repository: Repository = RepositoryImpl()) : ViewModel() {
 
     //Variavel que armazena os dados que vem do repository
-    private val _gameListResponse = MutableLiveData<List<Receita>>()
+    private val _receitaListResponse = MutableLiveData<List<Receita>>()
 
     //Variavel que é enviada para a View
-    val listaReceitas : LiveData<List<Receita>>
-        get() = _gameListResponse // Adicionando o retorno do repository na variavel observada pela View
+    val listaReceitas: LiveData<List<Receita>>
+        get() = _receitaListResponse // Adicionando o retorno do repository na variavel observada pela View
 
     private val _error = MutableLiveData<Throwable>()
     val error: LiveData<Throwable>
         get() = _error
 
-    fun getReceitas() = viewModelScope.launch{
+    fun getReceitas() = viewModelScope.launch {
 
         repository.getListaReceita().apply {
-            when(this){
-                is RepositoryStatus.Sucesso-> _gameListResponse.value = listaDeReceitas
+            when (this) {
+                is RepositoryStatus.Sucesso -> _receitaListResponse.value = listaDeReceitas
                 is RepositoryStatus.Erro -> _error.value = error
             }
         }

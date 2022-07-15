@@ -1,20 +1,22 @@
 package com.example.receitas.ui
 
 import android.os.Bundle
-import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.receitas.R
 import com.example.receitas.model.Receita
 
 
-class ReceitasFragment(val lista : List<Receita>): Fragment () {
-    companion object{
+class ReceitasFragment(val lista: List<Receita>) : Fragment() {
+    companion object {
         const val ARG_POSITION = "position"
 
         fun getInstance(position: Int, listaReceita: List<Receita>): Fragment {
@@ -25,21 +27,31 @@ class ReceitasFragment(val lista : List<Receita>): Fragment () {
             return receitasFragment
         }
     }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.receita_page, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val position = requireArguments().getInt(ARG_POSITION)
         val receita = lista[position]
         view.findViewById<TextView>(R.id.titulo_receita).text = receita.title
+        view.findViewById<ConstraintLayout>(R.id.page_recipes).setOnClickListener {
+
+            Log.v("teste", "" + receita.instructions)
+        }
 
         val image = view.findViewById<ImageView>(R.id.imagem_receita)
         Glide.with(image)
             .load(receita.image)
             .fitCenter()
             .into(image)
-        view.findViewById<TextView>(R.id.resumo_receita).text = Html.fromHtml(receita.summary)
-        view.findViewById<TextView>(R.id.informacoes_receita).text = "Tempo de preparo ${receita.readyInMinutes} minutos"
+        view.findViewById<WebView>(R.id.instructions)
+            .loadData("<style> body{color: gray;}</style>Instruction: </br>" + receita.instructions, "text/html", "UTF-8")
+        view.findViewById<TextView>(R.id.tempo_preparo).text =
+            "Preparation time ${receita.readyInMinutes} minutes"
     }
 }

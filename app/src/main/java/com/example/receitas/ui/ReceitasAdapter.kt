@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.receitas.model.Receita
 
-class ReceitasAdapter(activity: AppCompatActivity, val itemsCount: Int, val listaReceitas : List<Receita>)
-    :FragmentStateAdapter (activity){
+class ReceitasAdapter(
+    activity: AppCompatActivity,
+    val itemsCount: Int,
+    val listaReceitas: List<Receita>
+) : FragmentStateAdapter(activity) {
 
     override fun getItemCount(): Int {
         return itemsCount

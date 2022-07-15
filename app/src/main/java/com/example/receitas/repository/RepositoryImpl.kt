@@ -10,11 +10,11 @@ import kotlinx.coroutines.withContext
 class RepositoryImpl : Repository {
     override suspend fun getListaReceita(): RepositoryStatus<List<Receita>> {
 
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             try {
                 val listaReceita = receitasService.getRandomRecipes().recipes
                 RepositoryStatus.Sucesso(listaReceita)
-            }catch (t : Throwable){
+            } catch (t: Throwable) {
                 RepositoryStatus.Erro(t)
             }
         }

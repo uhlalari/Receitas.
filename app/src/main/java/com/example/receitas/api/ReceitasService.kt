@@ -9,8 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 interface ReceitasService {
-    @GET("random?${API_KEY}&number=10")
-    suspend fun getRandomRecipes() : RespostaRandom
+    @GET("random?${API_KEY}&number=20")
+    suspend fun getRandomRecipes(): RespostaRandom
 
     companion object {
         val receitasService: ReceitasService by lazy {

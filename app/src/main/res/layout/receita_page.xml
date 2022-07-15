@@ -2,46 +2,54 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/page_recipes"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imagem_receita"
-        android:layout_width="341dp"
-        android:layout_height="372dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/titulo_receita"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_receita"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/resumo_receita"
-        android:layout_width="343dp"
-        android:layout_height="118dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagem_receita" />
-
-    <TextView
-        android:id="@+id/informacoes_receita"
-        android:layout_width="343dp"
-        android:layout_height="42dp"
-        android:text="TextView"
+    <WebView
+        android:id="@+id/instructions"
+        android:layout_width="371dp"
+        android:layout_height="297dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resumo_receita" />
+        app:layout_constraintTop_toBottomOf="@+id/tempo_preparo" />
+
+    <TextView
+        android:id="@+id/tempo_preparo"
+        android:layout_width="413dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="12dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/instructions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_receita" />
 
     <TextView
         android:id="@+id/titulo_receita"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="2dp"
         android:text="batata cozida"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tempo_preparo"
+        app:layout_constraintStart_toStartOf="@+id/tempo_preparo"
+        app:layout_constraintTop_toBottomOf="@+id/imagem_receita" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
