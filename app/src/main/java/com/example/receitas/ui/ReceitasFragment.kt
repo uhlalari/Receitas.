@@ -1,11 +1,9 @@
 package com.example.receitas.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +28,7 @@ class ReceitasFragment(val lista: List<Receita>) : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         return inflater.inflate(R.layout.receita_page, container, false)
     }
@@ -38,20 +36,18 @@ class ReceitasFragment(val lista: List<Receita>) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val position = requireArguments().getInt(ARG_POSITION)
         val receita = lista[position]
-        view.findViewById<TextView>(R.id.titulo_receita).text = receita.title
+        view.findViewById<TextView>(R.id.titulo_receita).text = receita.Titulo
         view.findViewById<ConstraintLayout>(R.id.page_recipes).setOnClickListener {
-
-            Log.v("teste", "" + receita.instructions)
         }
 
         val image = view.findViewById<ImageView>(R.id.imagem_receita)
-        Glide.with(image)
-            .load(receita.image)
-            .fitCenter()
-            .into(image)
-        view.findViewById<WebView>(R.id.instructions)
-            .loadData("<style> body{color: gray;}</style>Instruction: </br>" + receita.instructions, "text/html", "UTF-8")
+
+        Glide.with(image)//Image view
+            .load(receita.Imagem)// Url em formato string
+            .fitCenter()// centralizar
+            .into(image)// image view
+        view.findViewById<TextView>(R.id.instructions).text = receita.Instrucoes
         view.findViewById<TextView>(R.id.tempo_preparo).text =
-            "Preparation time ${receita.readyInMinutes} minutes"
+            "Tempo de preparo:  ${receita.TempoDePreparo} minutos"
     }
 }

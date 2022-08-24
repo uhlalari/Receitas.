@@ -15,7 +15,7 @@ class MainViewModel(private val repository: Repository = RepositoryImpl()) : Vie
     //Variavel que armazena os dados que vem do repository
     private val _receitaListResponse = MutableLiveData<List<Receita>>()
 
-    //Variavel que é enviada para a View
+    //Variavel que a View vai observar e liveData n pode ser alterada
     val listaReceitas: LiveData<List<Receita>>
         get() = _receitaListResponse // Adicionando o retorno do repository na variavel observada pela View
 
@@ -24,10 +24,9 @@ class MainViewModel(private val repository: Repository = RepositoryImpl()) : Vie
         get() = _error
 
     fun getReceitas() = viewModelScope.launch {
-
         repository.getListaReceita().apply {
             when (this) {
-                is RepositoryStatus.Sucesso -> _receitaListResponse.value = listaDeReceitas
+                is RepositoryStatus.Sucesso -> _receitaListResponse.value = listaMok
                 is RepositoryStatus.Erro -> _error.value = error
             }
         }

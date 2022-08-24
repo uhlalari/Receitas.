@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
 
         //Observa variavel
         viewModel.error.observe(this) {
-            Log.v("teste", "" + it)
         }
 
     }
