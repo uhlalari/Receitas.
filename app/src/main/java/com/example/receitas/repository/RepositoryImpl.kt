@@ -11,7 +11,7 @@ class RepositoryImpl : Repository {
 
         return withContext(Dispatchers.IO) {
             try {
-                val listaMok = listOf(
+               /* val listaMok = listOf(
                     Receita("brigadeiro vegano ",
                         "https://firebasestorage.googleapis.com/v0/b/app-de-receita-9c8c6.appspot.com/o/Design%20sem%20nome%20(8).png?alt=media&token=91e981c3-f8cd-467e-ab19-765cbf21bbeb",
                         30,
@@ -142,9 +142,9 @@ class RepositoryImpl : Repository {
                                 "Modo de preparo: com o frango aquecido, misture o creme de leite e o lemon peper e o colorau e deixe dissolver o colorau em fogo baixo, apos dissolver acrescente o queijo, espere derreter e sirva com arroz e batatinhas",
                         "Frango")
 
-                )
+                )*/
 
-                RepositoryStatus.Sucesso(listaMok)
+                RepositoryStatus.Sucesso(listOf())
             } catch (t: Throwable) {
                 RepositoryStatus.Erro(t)
             }

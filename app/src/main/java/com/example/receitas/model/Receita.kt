@@ -1,9 +1,9 @@
 package com.example.receitas.model
 
 class Receita(
-    val Titulo: String,
-    val Imagem: String,
-    val TempoDePreparo: Int,
-    val Instrucoes: String,
-    val Dieta: String,
+    val titulo: String,
+    val imagem: String,
+    val tempoDePreparo: Int,
+    val instrucoes: String,
+    val dieta: String,
 )

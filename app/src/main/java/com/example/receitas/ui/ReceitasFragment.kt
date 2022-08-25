@@ -36,18 +36,18 @@ class ReceitasFragment(val lista: List<Receita>) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val position = requireArguments().getInt(ARG_POSITION)
         val receita = lista[position]
-        view.findViewById<TextView>(R.id.titulo_receita).text = receita.Titulo
+        view.findViewById<TextView>(R.id.titulo_receita).text = receita.titulo
         view.findViewById<ConstraintLayout>(R.id.page_recipes).setOnClickListener {
         }
 
         val image = view.findViewById<ImageView>(R.id.imagem_receita)
 
         Glide.with(image)//Image view
-            .load(receita.Imagem)// Url em formato string
+            .load(receita.imagem)// Url em formato string
             .fitCenter()// centralizar
             .into(image)// image view
-        view.findViewById<TextView>(R.id.instructions).text = receita.Instrucoes
+        view.findViewById<TextView>(R.id.instructions).text = receita.instrucoes
         view.findViewById<TextView>(R.id.tempo_preparo).text =
-            "Tempo de preparo:  ${receita.TempoDePreparo} minutos"
+            "Tempo de preparo:  ${receita.tempoDePreparo} minutos"
     }
 }
